@@ -7,13 +7,4 @@ describe PagesController, :type => :controller do
       expect(response.status).to eq(200)
     end
   end
-
-  # describe '#home' do
-  #   it "sends a GET request to 'https://peaceful-springs-7920.herokuapp.com/profile/' "do
-
-  #   end
-  # end
 end
-
-
-# https://peaceful-springs-7920.herokuapp.com/profile/
