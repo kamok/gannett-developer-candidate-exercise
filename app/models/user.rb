@@ -8,7 +8,8 @@ class User < ApplicationRecord
     if user = User.find_by(ip_address: ip_address)
       return user
     else
-      User.create(ip_address: ip_address, profile_id: get_profile_id).save
+      user = User.create(ip_address: ip_address, profile_id: get_profile_id)
+      user
     end
   end
 

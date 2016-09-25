@@ -34,5 +34,3 @@ class Content
     end
   end
 end
-
-p Content.new(4).generate
