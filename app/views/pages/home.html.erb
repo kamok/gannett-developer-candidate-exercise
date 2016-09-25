@@ -1,18 +1,21 @@
 <!-- refactor this into a two classes and call with jquery?-->
-
 <% if @theme == "rare" %>
 	<style> body { color:#DC143C; } </style>
 <% elsif @theme == "well"%>
 	<style> body { color:#8B4513; } </style>
 <% end %>
 
-<div id="header">
-	<h1>My Delicious Articles</h1>
+
+<div class="container">
+	<div id="header">
+		<h1>My Delicious Articles</h1>
+	</div>
+
+	<div class="article">
+		<% @articles.each do |article| %>
+		<h4><b><%= link_to( article.title, article.link) %></h4></b>
+		<p><%= link_to( article.summary, article.link) %></p>
+		<% end %>
+	</div>
 </div>
 
-<div class="article">
-	<% @articles.each do |article| %>
-	<%= link_to( article.title, article.link) %><br>
-	<%= link_to( article.summary, article.link) %><br><br>
-	<% end %>
-</div>
