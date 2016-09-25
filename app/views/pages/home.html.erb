@@ -1,1 +1,10 @@
-<h1>My Delicious Articles</h1>
+<div id="header">
+	<h1>My Delicious Articles</h1>
+</div>
+
+<div class="article">
+	<% @articles.each do |article| %>
+	<%=  article.title %></br>
+	<%=  article.summary %></br></br>
+	<% end %>
+</div>
