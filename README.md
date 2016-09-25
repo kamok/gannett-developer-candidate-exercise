@@ -1,3 +1,21 @@
+##Note to Gannett
+
+How to get running on your machine:
+1. This app uses Ruby on Rails. If you don't have Ruby, Rails, or Bundler, get it via http://railsinstaller.org/en
+2. Clone the repo.
+3. Run `bundle` inside the repo you just cloned.
+4. Run `rake db:migrate` to create the tables. If this doesn't work, run `rake db:create` first.
+5. Then run `rails s` to open to app.
+
+Note: 
+1. The 365 days persistence requirement for tying User to their unique profile_id was not met. Right now, it persists eternally. I contemplated using chron jobs but the implementation was heavy so I skipped that. However, what it would do is run a scan for all Users in the database every day and scans for Users where created_date was more than 365 days ago and delete it. 
+2. The test coverage in this app is not 100%. I ran into some development traps when I stopepd using TDD and one of the classes had a very diffcult to test public interface. I inadverdently wrote a imperative shell for the public method, and hiding most of the business logic inside the private methods which it calls. This took up a lot of time which exceeded the scope of the challenge. 
+
+Assumptions:
+1. I thought about implementing a caching system for the articles per profile_id. Meaning when we have a new User on our app that we previously never seen, we would fetch the content from the endpoint. However, if the User did exist (I'm basing this off of the ip address), we would simply fetch the cached version of the articles from our db. 
+
+However, due to the volatile nature of articles in general, I am going to presume that they will change frequently. Given that there's no immediate way on the endpoint to tell if the content has changed without actually fetching the content, there's no need for this. 
+
 # Gannett Developer Candidate Exercise
 
 Greetings! This exercise was written to provide developers with an opportunity to show off their mad coding chops.
@@ -31,14 +49,3 @@ The goal of this exercise is to deliver a single page of personalized content in
 2. The profile id endpoint referenced above automatically uses a cookie to preserve the profile id across requests.
 3. Both endpoints in the acceptance criteria above support a content type of either "application/json" or "application/javascript" (JSONP). The JSONP callback query string parameter is "callback".
 4. The exercise is relatively short to allow time for ample polish. Consider the implementation's: scalability, test coverage, readability, etc.
-
-## My Todo:
-Write tests 
-finish presentation of articles
-Write more tests for that
-
-Assumptions:
-
-1. I thought about implementing a caching system for the articles per profile_id. Meaning when we have a new User on our app that we previously never seen, we would fetch the content from the endpoint. However, if the User did exist (I'm basing this off of the ip address), we would simply fetch the cached version of the articles from our db. 
-
-However, due to the volatile nature of articles in general, I am going to presume that they will change frequently. Given that there's no immediate way on the endpoint to tell if the content has changed without actually fetching the content, there's no need for this. 
