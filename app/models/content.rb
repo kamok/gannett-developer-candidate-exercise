@@ -29,8 +29,8 @@ class Content
 
   def generate_articles(content_data)
     @articles = []
-    content_data["articles"].each do |article|
-      p article
+    content_data["articles"].each do |article_data|
+      @articles << Article.new(article_data)
     end
   end
 end
