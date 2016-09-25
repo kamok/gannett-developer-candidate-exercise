@@ -20,7 +20,7 @@ class Content
 
   def get_content_data
     base_url = "https://peaceful-springs-7920.herokuapp.com/content/"
-    JSON.parse(open(base_url + "#{@profile_id}/").read)
+    JSON.parse(open(base_url + "#{profile_id}/").read)
   end
 
   def set_theme(content_data)
